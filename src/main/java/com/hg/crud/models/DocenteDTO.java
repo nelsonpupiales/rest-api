@@ -23,4 +23,52 @@ public class DocenteDTO {
     private String correoDocente;
     public String userDocente;
     private String passDocente;   
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNombreDocente() {
+        return nombreDocente;
+    }
+
+    public void setNombreDocente(String nombreDocente) {
+        this.nombreDocente = nombreDocente;
+    }
+
+    public String getApellidoDocente() {
+        return apellidoDocente;
+    }
+
+    public void setApellidoDocente(String apellidoDocente) {
+        this.apellidoDocente = apellidoDocente;
+    }
+
+    public String getCorreoDocente() {
+        return correoDocente;
+    }
+
+    public void setCorreoDocente(String correoDocente) {
+        this.correoDocente = correoDocente;
+    }
+
+    public String getUserDocente() {
+        return userDocente;
+    }
+
+    public void setUserDocente(String userDocente) {
+        this.userDocente = userDocente;
+    }
+
+    public String getPassDocente() {
+        return passDocente;
+    }
+
+    public void setPassDocente(String passDocente) {
+        this.passDocente = passDocente;
+    }
 }
