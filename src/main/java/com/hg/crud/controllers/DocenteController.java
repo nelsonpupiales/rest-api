@@ -5,8 +5,8 @@
  */
 package com.hg.crud.controllers;
 
-import com.hg.crud.models.ProductDTO;
-import com.hg.crud.repositories.IProductDAO;
+import com.hg.crud.models.DocenteDTO;
+import com.hg.crud.repositories.IDocenteDAO;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -34,20 +34,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class DocenteController {
     
     @Autowired
-	private IProductDAO repository;
+	private IDocenteDAO repository;
 
-	@PostMapping("/docente")
-	public ProductDTO create(@Validated @RequestBody ProductDTO p) {
+	@PostMapping("/docentes")
+	public DocenteDTO create(@Validated @RequestBody DocenteDTO p) {
 		return repository.insert(p);
 	}
 
 	@GetMapping("/")
-	public List<ProductDTO> readAll() {
+	public List<DocenteDTO> readAll() {
 		return repository.findAll();
 	}
 
 	@PutMapping("/docente/{id}")
-	public ProductDTO update(@PathVariable String id, @Validated @RequestBody ProductDTO p) {
+	public DocenteDTO update(@PathVariable String id, @Validated @RequestBody DocenteDTO p) {
 		return repository.save(p);
 	}
 
