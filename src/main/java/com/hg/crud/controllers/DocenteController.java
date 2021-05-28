@@ -40,6 +40,13 @@ public class DocenteController {
 	public DocenteDTO create(@Validated @RequestBody DocenteDTO p) {
 		return repository.insert(p);
 	}
+        
+        @PostMapping("/guardarDocente")
+        public String saveDocente(@RequestBody DocenteDTO docente) {        
+        repository.save(docente);
+	System.out.println("Se creo nuevo docente con el ID = " + docente.getId() + "...");
+        return "Su información fue agregada: " + docente.getId();                
+    }
 
 	@GetMapping("/")
 	public List<DocenteDTO> readAll() {
