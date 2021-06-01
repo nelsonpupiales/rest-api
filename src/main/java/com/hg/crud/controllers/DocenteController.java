@@ -31,19 +31,19 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*", methods = { RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT,
 		RequestMethod.DELETE })
 
-@RequestMapping("/api")
+@RequestMapping("/api/docentes")
 
 public class DocenteController {
     
     @Autowired
     private IDocenteDAO repository;
 
-    @PostMapping("/docentes/docentes")
+    @PostMapping("/docentes")
     public DocenteDTO create(@Validated @RequestBody DocenteDTO p) {
 	return repository.insert(p);
     }
         
-    @PostMapping("/docentes/guardarDocente")
+    @PostMapping("/guardarDocente")
     public String saveDocente(@RequestBody DocenteDTO docente) {        
         repository.save(docente);
 	System.out.println("Se creo nuevo docente con el ID = " + docente.getId() + "...");
@@ -51,14 +51,14 @@ public class DocenteController {
     }
         
         //Obtener valores de Docente por medio del userDocente
-    @GetMapping("/docentes/datosDocenteUser/{userDocente}")
+    @GetMapping("/datosDocenteUser/{userDocente}")
     public Optional<DocenteDTO> getOneUser(@PathVariable String userDocente) {   
 	System.out.println("Usuario:" + userDocente);
         return repository.findByuserDocente(userDocente);                
     }
     
     //Obtener valores de Docente por medio del userDocente
-    @GetMapping("/docentes/datosDocentePass/{passDocente}")
+    @GetMapping("/datosDocentePass/{passDocente}")
     public Optional<DocenteDTO> getOnePass(@PathVariable String passDocente) {   
 	System.out.println("Pass:" + passDocente);
         return repository.findBypassDocente(passDocente);                
