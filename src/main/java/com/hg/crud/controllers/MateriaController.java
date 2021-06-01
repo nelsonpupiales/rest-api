@@ -30,7 +30,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins = "*", methods = { RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT,
 		RequestMethod.DELETE })
-@RequestMapping("/api/materias")
+
+
+@RequestMapping("/api")
 
 public class MateriaController {
     
@@ -39,7 +41,7 @@ public class MateriaController {
     
 
     //Almacena información de la Materia
-    @PostMapping("/guardarMateria")
+    @PostMapping("/materias/guardarMateria")
     public String saveMateria(@RequestBody MateriaDTO materia) {
         repository.save(materia);
         System.out.println("Se creo nuevo materia con el ID = " + materia.getId() + "...");
@@ -47,14 +49,14 @@ public class MateriaController {
     }
 
     //Obtengo las materias del Docente que va dictar
-    @GetMapping("/cargarMaterias/{idDocente}")
+    @GetMapping("/materias/cargarMaterias/{idDocente}")
     public List<MateriaDTO> getTemaIdDocente(@PathVariable String idDocente) {
         return repository.findByIdDocente(idDocente);
     }
           
         
     //Carga una sola materia por el ID
-    @GetMapping("/detalleUnaMateria/{id}")
+    @GetMapping("/materias/detalleUnaMateria/{id}")
     public Optional<MateriaDTO> getOneMateria(@PathVariable String id) {      
         System.out.println("Se ha seleccionado una sola materia con el ID = " + id + "...");
         return repository.findById(id);            
@@ -62,7 +64,7 @@ public class MateriaController {
     
     
     //Borra una materiaa
-    @DeleteMapping("/borrarMateria/{id}")
+    @DeleteMapping("/materias/borrarMateria/{id}")
     public ResponseEntity<String> deleteMateria(@PathVariable("id") String id) {
         System.out.println("Se elimino la materia con el ID = " + id + "...");
         repository.deleteById(id);
@@ -75,7 +77,7 @@ public class MateriaController {
     
           
     //Carga una sola materia por el CODIGO
-    @GetMapping("/detalleCodeMateria/{codigoMateria}")
+    @GetMapping("/materias/detalleCodeMateria/{codigoMateria}")
     public Optional<MateriaDTO> getOnecodigoMateria(@PathVariable String codigoMateria) {      
         System.out.println("Se ha seleccionado una sola materia con el ID = " + codigoMateria + "...");
         return repository.findBycodigoMateria(codigoMateria);            
@@ -84,7 +86,7 @@ public class MateriaController {
     
     
     //Carga lista de materias por el Codigo Materia
-    @GetMapping("/CodeMateriaList/{id}")
+    @GetMapping("/materias/CodeMateriaList/{id}")
     public List<MateriaDTO> getCodigoMateria(@PathVariable String id) {
         return repository.findByid(id);
     }
