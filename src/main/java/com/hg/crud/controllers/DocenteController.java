@@ -8,6 +8,7 @@ package com.hg.crud.controllers;
 import com.hg.crud.models.DocenteDTO;
 import com.hg.crud.repositories.IDocenteDAO;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -34,18 +35,32 @@ import org.springframework.web.bind.annotation.RestController;
 public class DocenteController {
     
     @Autowired
-	private IDocenteDAO repository;
+    private IDocenteDAO repository;
 
-	@PostMapping("/docentes")
-	public DocenteDTO create(@Validated @RequestBody DocenteDTO p) {
-		return repository.insert(p);
-	}
+    @PostMapping("/docentes")
+    public DocenteDTO create(@Validated @RequestBody DocenteDTO p) {
+	return repository.insert(p);
+    }
         
-        @PostMapping("/guardarDocente")
-        public String saveDocente(@RequestBody DocenteDTO docente) {        
+    @PostMapping("/guardarDocente")
+    public String saveDocente(@RequestBody DocenteDTO docente) {        
         repository.save(docente);
 	System.out.println("Se creo nuevo docente con el ID = " + docente.getId() + "...");
         return "Su información fue agregada: " + docente.getId();                
+    }
+        
+        //Obtener valores de Docente por medio del userDocente
+    @GetMapping("/datosDocenteUser/{userDocente}")
+    public Optional<DocenteDTO> getOneUser(@PathVariable String userDocente) {   
+	System.out.println("Usuario:" + userDocente);
+        return repository.findByuserDocente(userDocente);                
+    }
+    
+    //Obtener valores de Docente por medio del userDocente
+    @GetMapping("/datosDocentePass/{passDocente}")
+    public Optional<DocenteDTO> getOnePass(@PathVariable String passDocente) {   
+	System.out.println("Pass:" + passDocente);
+        return repository.findBypassDocente(passDocente);                
     }
 
 	@GetMapping("/")
